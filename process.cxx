@@ -35,25 +35,19 @@ int main(int argc, char const *argv[]){
 	cmphone cmp;
 	cmphone *pcmp = &cmp;
 	pcmp->getDiff(dbSource, cmpTarget);
+	pcmp->getUnum(dbSource, cmpTarget);
 
 	string title ="\"phone\",\"dbsource\",\"cmptarget\"";
 	tcsv<<title<<endl;
 	if(pcmp->getUdb().size())
-		wUniq(tcsv, pcmp->getUdb());
+		wUniq(tcsv, pcmp->getUdb(), pcmp->getNumudb(), 1);
 	
 	if(pcmp->getUcmp().size())
-		wUniq(tcsv, pcmp->getUcmp(),0, 1);
+		wUniq(tcsv, pcmp->getUcmp(),pcmp->getNumucmp(), 0);
 	
 	if(pcmp->getRep().size())
-		wRep(tcsv, pcmp->getRep(), pcmp->getRdb(), pcmp->getRcmp());
-
-
-
-	// pContents(pcmp->getRep());
-	// pContents(pcmp->getRdb());
-	// pContents(pcmp->getRcmp());
-	// pContents(pcmp->getUdb());
-	// pContents(pcmp->getUcmp());
+		wRep(tcsv, pcmp->getRep(), pcmp->getRnumdb(), pcmp->getRnumcmp());
+	
 
 
 	return 0;

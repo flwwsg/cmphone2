@@ -25,25 +25,29 @@ void rFile(vector<string>& sdata, istream& ifs){
 	
 }
 
-void wUniq(ostream& oss,std::vector<string>& w, int db=1, int cmp=0, char fDelimiter=',',char tDelimiter='"'){
-	// oss<<ss<<endl;
-	vector<string>::iterator iw;
-	
-	for(iw= w.begin(); iw != w.end();){
-		oss<<tDelimiter<<*iw<<tDelimiter<<fDelimiter<<tDelimiter<<db<<tDelimiter<<fDelimiter<<tDelimiter<<cmp<<tDelimiter<<endl;
-		++iw;
+void wUniq(ostream& oss,std::vector<string>& w, vector<int>& vv, bool  db, char fDelimiter=',',char tDelimiter='"'){
+  if(db){
+	for(int i=0; i < vv.size(); ++i){
+		oss<<tDelimiter<<w[i]<<tDelimiter<<fDelimiter<<tDelimiter<<vv[i]<<tDelimiter<<fDelimiter<<tDelimiter<<"0"<<tDelimiter<<endl;
 	}
+  }
+  else{
+    for(int i=0; i < vv.size(); ++i){
+		oss<<tDelimiter<<w[i]<<tDelimiter<<fDelimiter<<tDelimiter<<"0"<<tDelimiter<<fDelimiter<<tDelimiter<<vv[i]<<tDelimiter<<endl;
+	}
+  }
+    
 
 }
 
+
 void wRep(ostream& oss, std::vector<string>& w,  std::vector<int>& db, std::vector<int>& cmp, char fDelimiter=',',char tDelimiter='"'){
-	// oss<<ss<<endl;
-	vector<string>::iterator iw;
 	int i=0;
+	vector<string>::iterator iw;
 	for(iw= w.begin(); iw != w.end();){
 		oss<<tDelimiter<<*iw<<tDelimiter<<fDelimiter<<tDelimiter<<db[i]<<tDelimiter<<fDelimiter<<tDelimiter<<cmp[i]<<tDelimiter<<endl;
-		++iw;
 		++i;
+		++iw;
 	}
 }
 

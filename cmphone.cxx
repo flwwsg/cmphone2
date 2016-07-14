@@ -17,61 +17,33 @@ public:
 		return ucmp;
 	}
 
-	vector<int>& getRdb(){
+	vector<int>& getRnumdb(){
 		return rnumdb;
 	}
 
-	std::vector<int>& getRcmp(){
+	std::vector<int>& getRnumcmp(){
 		return rnumcmp;
 	}
-
-	// void addRdb(int n=1){
-	// 	rnumdb += n;
-	// }
-
-	// void addRcmp(int n=1){
-	// 	rnumcmp += n;
-	// }
-
-	// void setRdb(int num){
-	// 	rnumdb = num;
-	// }
-
-
-
-	// void setRep(vector<string>& tmp){
-	// 	rep=tmp;
-	// }
-
-	void setUdb(vector<string>& tmp){
-		udb=tmp;
+	
+	std::vector<int>& getNumudb(){
+		return numudb;
 	}
-
-	void setUcmp(vector<string>& tmp){
-		ucmp =tmp;
+	
+	std::vector<int>& getNumucmp(){
+		return numucmp;
 	}
-
-
-	// vector<string>::iterator delRep(vector<string>::iterator& tmp){
-	// 	return rep.erase(tmp);
-	// }
-
-	// vector<string>::iterator delUdb(vector<string>::iterator& tmp){
-	// 	return udb.erase(tmp);
-	// }
-
-	// vector<string>::iterator delUcmp(vector<string>::iterator& tmp){
-	// 	return ucmp.erase(tmp);
-	// }
 
 	inline int delData(vector<string>& tmp, string target);	
 	void getDiff(vector<string>& db, vector<string>& cmp);
+	void getUnum(vector<string>& db, vector<string>& cmp);
 private:
 	std::vector<string> rep;
 	std::vector<string> udb;
 	std::vector<string> ucmp;
 	vector<int> rnumdb;
 	vector<int> rnumcmp;
+	vector<int> numudb;
+	vector<int> numucmp;
 	
 
 };
@@ -94,7 +66,6 @@ inline int cmphone::delData(vector<string>& tmp, string target){
 void cmphone::getDiff(vector<string>& db, vector<string>& cmp){
 	vector<string>::iterator idb;
 	int cdb=0, ccmp=0;
-	stringstream ss;
 
 	for(idb = db.begin(); idb != db.end();){
 		string tmp = *idb;
@@ -119,8 +90,26 @@ void cmphone::getDiff(vector<string>& db, vector<string>& cmp){
 	  }
 	  ++idb;
 	}
+}
 
-	udb=db;
-	ucmp=cmp;
+void cmphone::getUnum(vector<string>& db, vector<string>& cmp){
+  vector<string>::iterator idb, icmp;
+  for(idb = db.begin(); idb != db.end();){
+    string tmp = *idb;
+    int count = delData(db, tmp);
+    udb.push_back(tmp);
+    numudb.push_back(count);
+    --idb;
+    ++idb;
+  }
+  
+   for(icmp = cmp.begin(); icmp != cmp.end();){
+    string tmp = *icmp;
+    int count = delData(cmp, tmp);
+    ucmp.push_back(tmp);
+    numucmp.push_back(count);
+    --icmp;
+    ++icmp;
+  }
 }
 
