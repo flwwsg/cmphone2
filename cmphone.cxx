@@ -1,5 +1,10 @@
 #include "cmphone.h"
 
+struct splusi{
+  vector<string> vs;
+  vector<int> vi;
+};
+
 class cmphone{
 public:
 	cmphone(){
@@ -44,6 +49,7 @@ private:
 	vector<int> rnumcmp;
 	vector<int> numudb;
 	vector<int> numucmp;
+	splusi test;
 	
 
 };
